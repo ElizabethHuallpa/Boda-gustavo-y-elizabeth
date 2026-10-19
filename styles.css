@@ -252,9 +252,22 @@ h2 {
   border: 2px solid rgba(60, 41, 25, 0.16);
 }
 
-.ev-l { left: 18px; border-radius: 0 0 14px 14px; }
-.ev-r { right: 18px; border-radius: 0 0 14px 14px; }
-.ev-b { left: 50%; transform: translateX(-50%); width: 82px; border-radius: 0 0 18px 18px; }
+.ev-l {
+  left: 18px;
+  border-radius: 0 0 14px 14px;
+}
+
+.ev-r {
+  right: 18px;
+  border-radius: 0 0 14px 14px;
+}
+
+.ev-b {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82px;
+  border-radius: 0 0 18px 18px;
+}
 
 .ev-flap {
   position: absolute;
@@ -326,14 +339,20 @@ h2 {
     padding: 16px 12px;
   }
 
-  .story, .rsvp {
+  .story,
+  .rsvp {
     padding: 24px 18px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
   }
