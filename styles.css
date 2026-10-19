@@ -1,0 +1,33 @@
+:root {
+  --navy: #2d4f63;
+  --olive: #6b8e5f;
+  --gold: #b8975a;
+  --paper: #f8f2e3;
+  --ink: #3a4a45;
+  --mute: #66726c;
+  --line: rgba(45, 79, 99, 0.2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(44px, 7vw, 58px);
+  color: var(--navy);
+}
+
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+.countdown { display: flex; gap: 12px; justify-content: center; }
+.cb { ... }
+.rsvp input, .rsvp select, .rsvp textarea { ... }
+.btn { ... }
+@media (max-width: 768px) { ... }
+@media (prefers-reduced-motion: reduce) { ... }
