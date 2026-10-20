@@ -232,7 +232,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 @media (prefers-reduced-motion:reduce){.petal{display:none}}
 /* ===== Tarjeta de familias ===== */
 .print{padding:46px 26px 40px}.print .cap:last-child{margin-bottom:0}
-
 .field{overflow:visible;height:240px}
 .runner{bottom:20px}
 .grass{width:100%}
