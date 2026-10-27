@@ -237,3 +237,47 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 .field{overflow:visible;height:240px}
 .runner{bottom:20px}
 .grass{width:100%}
+
+
+/* ===== Fecha elegante de la boda ===== */
+.fecha-boda {
+  width: 100%;
+  max-width: 280px;
+  margin: 28px auto 12px;
+  color: #77717a;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.fecha-boda .mes {
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.fecha-detalle {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.fecha-lateral {
+  border-top: 1px solid #b8b2b5;
+  border-bottom: 1px solid #b8b2b5;
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.fecha-boda .dia {
+  font-size: 32px;
+  line-height: 1;
+  text-align: center;
+  font-weight: normal;
+  color: #8196a1;
+}
