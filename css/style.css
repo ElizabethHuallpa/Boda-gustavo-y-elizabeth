@@ -302,14 +302,13 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   color: #8196a1;
 }
 
-
 /* Sección del monograma */
 .rv.wc.b {
   background: #f5f0e6;
   position: relative;
 }
 
-/* Monograma EG: grabado en relieve */
+/* ===== Monograma EG: grabado en relieve ===== */
 .rv.wc.b .mono {
   display: block;
   width: 200px;
