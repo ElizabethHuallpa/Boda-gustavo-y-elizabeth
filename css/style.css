@@ -301,3 +301,30 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   font-weight: normal;
   color: #8196a1;
 }
+
+/* ===== Monograma ===== */
+/* Monograma EG en relieve */
+.rv.wc.b .mono {
+  display: block;
+  width: 200px;
+  max-width: 65%;
+  height: auto;
+  margin: 0 auto 28px;
+
+  /* Convierte los trazos en un tono claro */
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(1px 1px 0 rgba(139, 125, 101, 0.65))
+    drop-shadow(2px 3px 3px rgba(139, 125, 101, 0.18))
+    drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.95));
+
+  opacity: 0.72;
+}
+
+.rv.wc.b h2 {
+  color: #887a65;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  text-align: center;
+}
