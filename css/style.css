@@ -301,32 +301,3 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   font-weight: normal;
   color: #8196a1;
 }
-
-/* ===== Monograma ===== */
-/* Sección del monograma */
-.rv.wc.b {
-  background: #f5f0e6;
-  position: relative;
-}
-
-/* Monograma EG: grabado en relieve */
-.rv.wc.b .mono {
-  display: block;
-  width: 200px;
-  max-width: 65%;
-  height: auto;
-  margin: 0 auto 28px;
-  opacity: 0.95;
-  filter:
-    drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.85))
-    drop-shadow(1px 1px 0 rgba(90, 84, 68, 0.45))
-    drop-shadow(2px 3px 3px rgba(90, 84, 68, 0.15));
-}
-
-.rv.wc.b h2 {
-  color: #887a65;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: normal;
-  text-align: center;
-}
-
