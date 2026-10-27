@@ -234,10 +234,27 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 .print{padding:46px 26px 40px}.print .cap:last-child{margin-bottom:0}
 
 /* ===== Perrito ===== */
-.field{overflow:visible;height:240px}
-.runner{bottom:20px}
-.grass{width:100%}
 
+.field {
+  position: relative;
+  overflow: hidden;
+}
+
+.grass {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 46px;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.runner {
+  position: absolute;
+  z-index: 2;
+}
 
 /* ===== Fecha elegante de la boda ===== */
 .fecha-boda {
