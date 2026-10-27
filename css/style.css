@@ -301,3 +301,11 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   font-weight: normal;
   color: #8196a1;
 }
+
+/* Efecto de relieve solo en el monograma */
+.rv.wc.b .mono {
+  filter:
+    drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.65))
+    drop-shadow(1px 1px 0 rgba(90, 84, 68, 0.30))
+    drop-shadow(2px 3px 3px rgba(90, 84, 68, 0.12));
+}
