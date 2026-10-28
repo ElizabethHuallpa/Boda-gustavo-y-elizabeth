@@ -351,17 +351,18 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 /*      rgba(255,255,255,.12), rgba(0,0,0,.08)),
     url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
   filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
+linear-gradient(
+      180deg, 
+      rgba(17,22,12,.18), 
+      rgba(17,22,12,.35)
 */
+
 .ev-table{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(
-      180deg, 
-      rgba(17,22,12,.18), 
-      rgba(17,22,12,.35)
-    ),
-}
+    url("../assets/img/sobre-cerrado.jpeg")
+    center center / contain no-repeat;
 
 .ev-body{
   position:absolute;
@@ -542,3 +543,11 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   .ev-seal{width:94px;height:94px;margin:-47px 0 0 -47px}
   .ev-hint{top:calc(50vh + 70px)}
 }
+
+/* ===== SOBRE: Oculta las piezas que crean el segundo sobre ===== */
+.ev-body,
+.ev-cast,
+.ev-flap{
+  display:none;
+}
+  
