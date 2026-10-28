@@ -545,10 +545,3 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   .ev-seal{width:94px;height:94px;margin:-47px 0 0 -47px}
   .ev-hint{top:calc(50vh + 70px)}
 }
-
-/* ===== SOBRE: Oculta las piezas que crean el segundo sobre ===== */
-.ev-body,
-.ev-cast,
-.ev-flap{
-  display:none;
-}
