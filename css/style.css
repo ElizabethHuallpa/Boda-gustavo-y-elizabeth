@@ -309,3 +309,37 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     drop-shadow(1px 1px 0 rgba(90, 84, 68, 0.30))
     drop-shadow(2px 3px 3px rgba(90, 84, 68, 0.12));
 }
+
+/* Cita bíblica más abajo */
+.hero .cita {
+  margin-top: 45px;
+  position: relative;
+  z-index: 2;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+/* Nombres completos y centrados */
+.hero .ht {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.hero .names {
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(25px, 6.5vw, 48px);
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* Celulares pequeños */
+@media (max-width: 380px) {
+  .hero .names {
+    font-size: 23px;
+  }
+}
