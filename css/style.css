@@ -353,7 +353,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
       
 */
-
+/*
 .ev-table{
   position:absolute;
   inset:0;
@@ -544,7 +544,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   .ev-flap{top:16vh;height:22vh}
   .ev-seal{width:94px;height:94px;margin:-47px 0 0 -47px}
   .ev-hint{top:calc(50vh + 70px)}
-}*/
+} 
+*/
 
 
 /* ===== SOBRE INTERACTIVO: VERDE OLIVA ===== */
