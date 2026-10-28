@@ -12,6 +12,7 @@
   const nz=s=>String(s==null?'':s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
   const CFG=(typeof RSVP_CONFIG!=='undefined')?RSVP_CONFIG:{guests:[], guestsUrl:'data/invitados.json', unlistedPasses:1, seatsCap:10};
   const GUESTS=Array.isArray(CFG.guests)?CFG.guests:[];
+  const MIN_SUGGEST=3;
 
   function normalizeGuest(raw){
     if(!raw) return null;
@@ -53,6 +54,7 @@
 
   const name=g('rsvpName')||f('nombre');
   if(!name){console.error('[RSVP] No encontré el campo del nombre (id="rsvpName" o name="nombre")');return}
+  name.setAttribute('autocomplete','off');
   const seatsEl=g('rsvpSeats')||f('asistentes'), hasSeats=!!seatsEl;
   const btn=g('rsvpSubmit')||form.querySelector('[type=submit],button:not([type])')||STUB;
   let statusEl=g('rsvpStatus');
@@ -65,7 +67,29 @@
 
   const plural=(n,s,p)=>n+' '+(n===1?s:p);
   const val=n=>String((n&&n.value)||'').trim();
-  const matches=v=>{const t=nz(v).split(' ').filter(Boolean);return t.length?GUESTS.filter(x=>t.every(w=>nz(x.n).includes(w))):[]};
+  const rankGuest=(candidate, query)=>{
+    const q=nz(query), n=nz(candidate);
+    if(!q) return 999;
+    if(n===q) return 0;
+    if(n.startsWith(q)) return 1;
+    const tokens=q.split(' ').filter(Boolean);
+    let score=10;
+    for(const token of tokens){
+      if(n.startsWith(token)) score=Math.min(score,2);
+      else if(n.includes(token)) score=Math.min(score,5);
+      else return 999;
+    }
+    return score;
+  };
+  const matches=v=>{
+    const q=nz(v);
+    if(q.length < MIN_SUGGEST) return [];
+    const terms=q.split(' ').filter(Boolean);
+    if(!terms.length) return [];
+    return GUESTS.filter(x=>terms.every(w=>nz(x.n).includes(w)))
+      .sort((a,b)=>rankGuest(a.n,q)-rankGuest(b.n,q))
+      .slice(0,8);
+  };
   const exact=v=>GUESTS.find(x=>nz(x.n)===nz(v))||null;
   const att=()=>{const a=f('asistencia');return a?String(a.value||''):''};
   const isYes=a=>{const t=nz(a);return /asist/.test(t)&&!/^no/.test(t)};
@@ -83,7 +107,7 @@
   function refreshAuth(){
     const v=el.name.value.trim();guest=exact(v);
     authorized=Math.min(guest?guest.p:(CFG.unlistedPasses||1),CFG.seatsCap||10);
-    const show=v.length>=3;el.auth.hidden=!show;
+    const show=v.length>=MIN_SUGGEST;el.auth.hidden=!show;
     el.authN.textContent=authorized;
     el.authNote.textContent=show&&!guest&&GUESTS.length?'(tu nombre no aparece en la lista)':'';
     buildSeats();
@@ -92,15 +116,18 @@
 
   function showSuggest(){
     if(el.sug===STUB)return;
-    const v=el.name.value.trim(),list=v.length>=3?matches(v).slice(0,6):[];
+    const v=el.name.value.trim();
+    if(v.length < MIN_SUGGEST){el.sug.innerHTML='';el.sug.hidden=true;return;}
+    const list=matches(v);
     el.sug.innerHTML='';
     list.forEach(x=>{const li=document.createElement('li');li.textContent=x.n;li.tabIndex=0;li.setAttribute('role','option');
-      const pick=()=>{el.name.value=x.n;el.sug.hidden=true;setErr('name','');refreshAuth()};
+      const pick=()=>{el.name.value=x.n;el.sug.hidden=true;setErr('name','');refreshAuth();};
       li.addEventListener('mousedown',e=>{e.preventDefault();pick()});li.addEventListener('keydown',e=>{if(e.key==='Enter')pick()});el.sug.appendChild(li)});
     el.sug.hidden=!list.length||!!exact(v);
+    el.name.setAttribute('aria-expanded', String(!el.sug.hidden));
   }
   el.name.addEventListener('input',()=>{setErr('name','');showSuggest();refreshAuth()});
-  el.name.addEventListener('blur',()=>setTimeout(()=>{el.sug.hidden=true},150));
+  el.name.addEventListener('blur',()=>setTimeout(()=>{el.sug.hidden=true;el.name.setAttribute('aria-expanded','false')},150));
   form.querySelectorAll('[name=asistencia]').forEach(r=>r.addEventListener('change',()=>{setErr('att','');refreshSeatsBox()}));
   if(hasSeats)seatsEl.addEventListener('change',()=>setErr('seats',''));
 
