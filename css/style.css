@@ -351,18 +351,20 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 /*      rgba(255,255,255,.12), rgba(0,0,0,.08)),
     url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
   filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
-linear-gradient(
-      180deg, 
-      rgba(17,22,12,.18), 
-      rgba(17,22,12,.35)
+      
 */
 
 .ev-table{
   position:absolute;
   inset:0;
   background:
-    url("../assets/img/sobre-cerrado.jpeg")
-    center center / contain no-repeat;
+    linear-gradient(
+    180deg, 
+      rgba(17,22,12,.18), 
+      rgba(17,22,12,.35)
+    ),
+    #7A8F63
+  }
 
 .ev-body{
   position:absolute;
@@ -550,4 +552,3 @@ linear-gradient(
 .ev-flap{
   display:none;
 }
-  
