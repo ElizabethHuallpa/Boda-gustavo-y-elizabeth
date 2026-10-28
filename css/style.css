@@ -348,13 +348,20 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   background:transparent;
 }
 
+/*      rgba(255,255,255,.12), rgba(0,0,0,.08)),
+    url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
+*/
 .ev-table{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.12), rgba(0,0,0,.08)),
-    url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
-  filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
+    linear-gradient(
+      180deg, 
+      rgba(17,22,12,.18), 
+      rgba(17,22,12,.35)
+    ),
+    #465536;    
 }
 
 .ev-body{
@@ -434,14 +441,18 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   inset:0;
   clip-path:polygon(0 0,100% 0,50% 100%);
 }
-
+/*
+      rgba(255,255,255,.10),
+      rgba(0,0,0,.12)
+*/
 .ev-front .ev-tri{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.10),
-      rgba(0,0,0,.12)
+      rgba(255,255,255,.12),
+      rgba(0,0,0,.16)
     );
+    url("../assets/img/forro-sobre.png") center / cover no-repeat;
 }
 
 .ev-backf{
