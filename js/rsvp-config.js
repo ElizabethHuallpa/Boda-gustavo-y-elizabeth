@@ -5,7 +5,7 @@ const RSVP_CONFIG={
   guests:[
     {n:"Invitado de Prueba Uno",p:2},
     {n:"Invitada de Prueba Dos",p:1},
-    {n:"Familia Prueba Tres",p:4}
+    {n:"Gustavo Antonio",p:3}
   ],
   unlistedPasses:1,  // asistentes permitidos si el nombre no está en la lista
   seatsCap:10        // tope de seguridad
