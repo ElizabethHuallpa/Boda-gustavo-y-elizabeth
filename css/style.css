@@ -1,4 +1,4 @@
-:root{color-scheme:light;--navy:#2d4f63;--olive:#6b8e5f;--olive-d:#55704b;--sage:#b8c2ad;--sky:#a9c4d9;--gold:#b8975a;--ink:#3a4a45;--mute:#66726c;--line:rgba(45,79,99,.2);--envelope-image:url("../assets/img/forro-sobre.jpg");box-sizing:border-box;padding:0;margin:0}
+:root{color-scheme:light;--navy:#2d4f63;--olive:#6b8e5f;--olive-d:#55704b;--sage:#b8c2ad;--sky:#a9c4d9;--gold:#b8975a;--ink:#3a4a45;--mute:#66726c;--line:rgba(45,79,99,.2);--envelope-image:url("../assets/img/forro-sobre.jpg");--envelope-closed:url("../assets/img/sobre-cerrado.jpg");--envelope-open:url("../assets/img/sobre-abierto.jpg");box-sizing:border-box;padding:0;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:#fbfaf6 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='6'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0.12'/></feComponentTransfer></filter><rect width='260' height='260' filter='url(%23n)'/></svg>");background-attachment:fixed}
