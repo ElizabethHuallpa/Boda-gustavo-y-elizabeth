@@ -433,8 +433,11 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 .ev-front .ev-tri{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.12)),
-    url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10),
+      rgba(0,0,0,.12)
+    );
 }
 
 .ev-backf{
