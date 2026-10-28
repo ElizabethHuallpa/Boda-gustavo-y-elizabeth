@@ -1,7 +1,7 @@
 /* ===================== RSVP · CONFIGURACIÓN (editable) =====================
    Lista de invitados: n = nombre completo, p = asistentes autorizados.
    Reemplaza los 3 nombres de prueba por tu lista real. */
-/*const RSVP_CONFIG={
+const RSVP_CONFIG={
   guests:[
     {n:"Invitado de Prueba Uno",p:2},
     {n:"Invitada de Prueba Dos",p:1},
@@ -9,7 +9,7 @@
   ],
   unlistedPasses:1,  // asistentes permitidos si el nombre no está en la lista
   seatsCap:10        // tope de seguridad
-};*/
+};
 
 /**
  * RSVP · Boda Elizabeth y Gustavo  —  Backend en Google Apps Script (versión 2)
@@ -28,6 +28,8 @@
  *  - Si cambias el código: Implementar → Administrar implementaciones → ✏️ → Versión: Nueva versión → Implementar.
  *  - Para comprobar: abre la URL de la aplicación web en el navegador; debe mostrar {"ok":true,...}.
  */
+
+/*
 const CONFIG = {
   HOJA_INVITADOS: 'Invitados',        // nombre de la pestaña con tu base de invitados (fila 1 = encabezados)
   HOJA_RESPUESTAS: 'Respuestas',      // bitácora de respuestas
