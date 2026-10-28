@@ -8,7 +8,7 @@ h2{font:400 clamp(44px,7vw,58px)/1.1 'Pinyon Script',cursive;color:var(--navy);m
 .sub{font-size:17px;color:var(--mute);line-height:1.6}
 .serif{font-style:italic;color:var(--mute);line-height:1.7}
 /* SOBRE */
-#env{position:fixed;inset:0;z-index:99999;background:var(--olive-d);transition:opacity 1.4s,visibility 1.4s}
+/*#env{position:fixed;inset:0;z-index:99999;background:var(--olive-d);transition:opacity 1.4s,visibility 1.4s}
 #env.gone{opacity:0;visibility:hidden}
 .envelope{position:absolute;inset:0;overflow:hidden;box-shadow:inset 0 0 120px rgba(0,0,0,.25)}
 .flap{position:absolute;top:0;left:0;width:0;height:0;border-left:50vw solid transparent;border-right:50vw solid transparent;border-top:50vh solid var(--olive);transform-origin:top;transition:transform 2.6s cubic-bezier(.25,1,.5,1);z-index:4;filter:drop-shadow(0 6px 6px rgba(0,0,0,.18))}
@@ -23,7 +23,7 @@ h2{font:400 clamp(44px,7vw,58px)/1.1 'Pinyon Script',cursive;color:var(--navy);m
 .open .flap{transform:rotateX(180deg);z-index:1}
 .open .seal{transform:scale(0);opacity:0;pointer-events:none;animation:none}
 .open .hintb{opacity:0}
-.open .letter{transform:translateY(-22vh);z-index:5}
+.open .letter{transform:translateY(-22vh);z-index:5}*/
 /* ACUARELA */
 .wc{position:relative;isolation:isolate}
 .wc::before,.wc::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:url(#rough);pointer-events:none}
