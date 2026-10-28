@@ -324,228 +324,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   box-sizing: border-box;
 }
 
-/* ===== SOBRE: una sola base, sin duplicar textura ===== */
-/*#env{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:linear-gradient(180deg, rgba(17,22,12,.26), rgba(17,22,12,.40));
-  transition:opacity 1.4s,visibility 1.4s;
-  overflow:hidden;
-}
-
-#env.gone{
-  opacity:0;
-  visibility:hidden;
-}
-
-.ev-scene{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  perspective:1800px;
-  perspective-origin:50% 20vh;
-  background:transparent;
-}
-
-/*      rgba(255,255,255,.12), rgba(0,0,0,.08)),
-    url("../assets/img/sobre-cerrado.jpeg") center center / cover no-repeat;
-  filter:drop-shadow(0 10px 24px rgba(0,0,0,.28));
-      
-*/
-/*
-.ev-table{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-    180deg, 
-      rgba(17,22,12,.18), 
-      rgba(17,22,12,.35)
-    ),
-    #7A8F63
-  }
-
-.ev-body{
-  position:absolute;
-  inset:0;
-  top:0;
-  bottom:0;
-  filter:drop-shadow(0 -8px 18px rgba(0,0,0,.35));
-  background:transparent;
-}
-
-.ev-inner{
-  position:absolute;
-  inset:0;
-  background:transparent;
-}
-
-.ev-piece{
-  position:absolute;
-  inset:0;
-  background:transparent;
-}
-
-.ev-l,
-.ev-r,
-.ev-b{
-  position:absolute;
-  inset:0;
-  background:transparent;
-}
-
-.ev-l{clip-path:polygon(0 0,50% 33%,0 100%)}
-.ev-r{clip-path:polygon(100% 0,50% 33%,100% 100%)}
-.ev-b{clip-path:polygon(0 100%,50% 33%,100% 100%)}
-
-.ev-seams{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-}
-
-.ev-cast{
-  position:absolute;
-  left:0;
-  right:0;
-  top:calc(18vh + 12px);
-  height:24vh;
-  background:rgba(20,28,17,.46);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  filter:blur(8px);
-  z-index:3;
-  opacity:1;
-}
-
-.ev-flap{
-  position:absolute;
-  left:0;
-  right:0;
-  top:18vh;
-  height:26vh;
-  transform-origin:50% 0;
-  transform-style:preserve-3d;
-  z-index:4;
-}
-
-.ev-face{
-  position:absolute;
-  inset:0;
-  -webkit-backface-visibility:hidden;
-  backface-visibility:hidden;
-}
-
-.ev-tri{
-  position:absolute;
-  inset:0;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-}
-/*
-      rgba(255,255,255,.10),
-      rgba(0,0,0,.12)
-*/
-.ev-front .ev-tri{
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.12),
-      rgba(0,0,0,.16)
-    );
-    url("boda-gustavo-y-elizabeth/assets/img/forro-sobre.png") center / cover no-repeat;
-}
-
-.ev-backf{
-  transform:rotateX(180deg);
-}
-
-.ev-backf .ev-tri{
-  clip-path:polygon(0 100%,100% 100%,50% 0);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.12)),
-    url("../assets/img/forro-sobre.png") center center / cover no-repeat;
-}
-
-.ev-liner{
-  position:absolute;
-  inset:0;
-  clip-path:polygon(2.2% 100%,97.8% 100%,50% 8%);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.12)),
-    url("../assets/img/forro-sobre.png") center center / cover no-repeat;
-  overflow:hidden;
-  filter:saturate(.95) contrast(1.04) brightness(1.02);
-}
-
-.ev-seal{
-  position:absolute;
-  left:50%;
-  top:100%;
-  width:112px;
-  height:112px;
-  margin:-56px 0 0 -56px;
-  cursor:pointer;
-  z-index:2;
-  filter:drop-shadow(0 9px 8px rgba(0,0,0,.5));
-  animation:evPulse 2.4s ease-in-out infinite;
-}
-
-.ev-seal svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.ev-light{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-  background:
-    radial-gradient(120% 70% at 18% 0%,rgba(255,255,255,.16),transparent 55%),
-    radial-gradient(110% 80% at 85% 110%,rgba(255,255,255,.12),transparent 48%);
-}
-
-.ev-hint{
-  position:absolute;
-  left:0;
-  right:0;
-  top:calc(50vh + 84px);
-  z-index:6;
-  text-align:center;
-  color:rgba(255,255,255,.92);
-  font-size:13px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-
-.open .ev-hint{opacity:0}
-.open .ev-seal{animation:none}
-.open .ev-flap{animation:evOpen 3.6s forwards}
-.open .ev-cast{animation:evCast 1.8s forwards}
-
-@keyframes evOpen{
-  0%{transform:rotateX(0)}
-  100%{transform:rotateX(180deg)}
-}
-
-@keyframes evCast{
-  0%{opacity:1}
-  100%{opacity:0}
-}
-
-@keyframes evPulse{
-  50%{transform:scale(1.07)}
-}
-
-@media (max-width:640px){
-  .ev-flap{top:16vh;height:22vh}
-  .ev-seal{width:94px;height:94px;margin:-47px 0 0 -47px}
-  .ev-hint{top:calc(50vh + 70px)}
-} 
-*/
 
 
 /* ===== SOBRE INTERACTIVO: VERDE OLIVA ===== */
@@ -556,6 +334,10 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   z-index: 99999;
   overflow: hidden;
   background: #465638;
+}
+
+#env {
+  transition: opacity 1.4s, visibility 1.4s;
 }
 
 #env.gone {
@@ -725,19 +507,23 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 }
 
 /* Animación */
-#env .open .ev-flap {
+#env.open .ev-flap,
+.open #env .ev-flap {
   animation: evOpen 3.6s forwards;
 }
 
-#env .open .ev-cast {
+#env.open .ev-cast,
+.open #env .ev-cast {
   animation: evCast 1.8s forwards;
 }
 
-#env .open .ev-hint {
+#env.open .ev-hint,
+.open #env .ev-hint {
   opacity: 0;
 }
 
-#env .open .ev-seal {
+#env.open .ev-seal,
+.open #env .ev-seal {
   animation: none;
 }
 
@@ -780,3 +566,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   }
 }
 
+
+/* Texto de ayuda y luz del sobre */
+#env .ev-light{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(120% 70% at 18% 0%,rgba(255,255,255,.16),transparent 55%),radial-gradient(110% 80% at 85% 110%,rgba(0,0,0,.3),transparent 62%)}
+#env .ev-hint{position:absolute;left:0;right:0;top:calc(18vh + 26vh + 70px);z-index:6;text-align:center;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:3px;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.6);transition:opacity .6s}
+@media (max-width:640px){#env .ev-hint{top:calc(16vh + 23vh + 60px)}}
