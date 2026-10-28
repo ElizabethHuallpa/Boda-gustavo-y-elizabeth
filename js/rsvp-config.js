@@ -19,7 +19,7 @@ const RSVP_CONFIG={
     {n:"Clotilde Avalo",p:2},
     {n:"Freddy Avalo",p:2},
     {n:"Luis Medina",p:2},
-    {n:Carolina Gamio"",p:2},
+    {n:"Carolina Gamio",p:2},
     {n:"Ana Avalo",p:2},
     {n:"Jose Boschi",p:2},
     {n:"Ernest Arellano",p:1},
