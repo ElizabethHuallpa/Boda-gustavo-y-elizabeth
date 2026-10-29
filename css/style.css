@@ -413,8 +413,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   position: absolute;
   left: 0;
   right: 0;
-  top: 10px;
-  height: 44%;
+  top: 10px;   /* antes: calc(18vh + 10px) */
+  height: 44%;   /* antes: 26vh */
   background: rgba(18, 25, 12, .35);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   filter: blur(8px);
@@ -551,18 +551,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     width: 94px;
     height: 94px;
     margin: -47px 0 0 -47px;
-  }
-}
-
-  #env .ev-seal {
-    width: 94px;
-    height: 94px;
-    margin: -47px 0 0 -47px;
-  }
-
-  #env .ev-cast {
-    top: calc(16vh + 8px);
-    height: 23vh;
   }
 }
 
