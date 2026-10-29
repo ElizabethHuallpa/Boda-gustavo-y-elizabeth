@@ -106,7 +106,9 @@
   }
   function refreshAuth(){
     const v=el.name.value.trim();guest=exact(v);
-    authorized=Math.min(guest?guest.p:(CFG.unlistedPasses||1),CFG.seatsCap||10);
+    authorized=Math.min(
+    guest?guest.p:(CFG.unlistedPasses||1),
+    CFG.seatsCap||10);
     const show=v.length>=MIN_SUGGEST;el.auth.hidden=!show;
     el.authN.textContent=authorized;
     el.authNote.textContent=show&&!guest&&GUESTS.length?'(tu nombre no aparece en la lista)':'';
