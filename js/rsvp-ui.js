@@ -115,6 +115,7 @@
     el.authN.textContent=authorized;
     el.authNote.textContent=show&&!guest&&GUESTS.length
        ?'(tu nombre no aparece en la lista)':'';
+    setSeats(parseInt(seatsEl&&seatsEl.value,10)||1);
     buildSeats();
   }
   function refreshSeatsBox(){el.seatsBox.hidden=!isYes(att())}
@@ -136,6 +137,18 @@
   form.querySelectorAll('[name=asistencia]').forEach(r=>r.addEventListener('change',()=>{setErr('att','');refreshSeatsBox()}));
   if(hasSeats)seatsEl.addEventListener('change',()=>setErr('seats',''));
 
+    const plus=g('seatsPlus'), minus=g('seatsMinus');
+  function setSeats(n){
+    if(!hasSeats)return;
+    const max=Math.min(authorized,CFG.seatsCap||10);
+    n=Math.max(1,Math.min(n,max));
+    seatsEl.value=n; setErr('seats','');
+    if(minus)minus.disabled=n<=1;
+    if(plus)plus.disabled=n>=max;
+  }
+  if(plus)plus.addEventListener('click',()=>setSeats((parseInt(seatsEl.value,10)||1)+1));
+  if(minus)minus.addEventListener('click',()=>setSeats((parseInt(seatsEl.value,10)||1)-1));
+   
   function validate(){
     const errs={},nm=el.name.value.trim().replace(/\s+/g,' ');
     if(nm.length<5||nm.split(' ').length<2)errs.name='Escribe tu nombre completo (nombre y apellido).';
