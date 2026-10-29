@@ -557,3 +557,95 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 #env .ev-light{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(120% 70% at 18% 0%,rgba(255,255,255,.16),transparent 55%),radial-gradient(110% 80% at 85% 110%,rgba(0,0,0,.3),transparent 62%)}
 #env .ev-hint{position:absolute;left:0;right:0;top:calc(44% + 70px);z-index:6;text-align:center;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:3px;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.6);transition:opacity .6s}
 @media (max-width:640px){#env .ev-hint{top:calc(44% + 60px)}}
+
+/* ===== TEXTURA REALISTA DEL SOBRE (papel mate verde oliva) ===== */
+#env{
+  --grano:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='a'><feTurbulence stitchTiles='stitch' type='fractalNoise' baseFrequency='.9' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 .05 0 0 0 0 .08 0 0 0 0 .02 0 0 0 .5 -.14'/></filter><rect width='220' height='220' filter='url(%23a)'/></svg>");
+  --fibras:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='b'><feTurbulence stitchTiles='stitch' type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='11'/><feColorMatrix values='0 0 0 0 .92 0 0 0 0 .96 0 0 0 0 .74 0 0 0 .09 -.02'/></filter><rect width='400' height='400' filter='url(%23b)'/></svg>");
+  background:#3a4529;
+}
+
+/* fondo detrás del sobre */
+#env .ev-table{
+  background:
+    var(--grano),
+    radial-gradient(ellipse at 50% 30%, rgba(120,138,92,.35), transparent 70%),
+    linear-gradient(135deg,#4a5a37,#2f3b20);
+}
+
+/* interior visible al abrir */
+#env .ev-inner{
+  background:var(--grano), linear-gradient(160deg,#3e4a2c,#2c3720);
+}
+
+/* piezas del cuerpo: papel mate con luz suave desde arriba-izquierda */
+#env .ev-l{
+  background:
+    var(--grano), var(--fibras),
+    linear-gradient(105deg, rgba(255,255,255,.07), rgba(0,0,0,.20)),
+    #5c6c40;
+}
+#env .ev-r{
+  background:
+    var(--grano), var(--fibras),
+    linear-gradient(255deg, rgba(255,255,255,.04), rgba(0,0,0,.24)),
+    #576740;
+}
+#env .ev-b{
+  background:
+    var(--grano), var(--fibras),
+    linear-gradient(0deg, rgba(0,0,0,.14), rgba(255,255,255,.06)),
+    #62734a;
+}
+
+/* solapa (exterior): un poco más clara, como papel que recibe luz */
+#env .ev-front .ev-tri{
+  background:
+    var(--grano), var(--fibras),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.14)),
+    #6c7d50;
+}
+
+/* reverso de la solapa: borde dorado que enmarca el forro */
+#env .ev-backf .ev-tri{
+  background:linear-gradient(135deg,#d3b566,#a98332 60%,#c9a85a);
+}
+
+/* forro estampado */
+#env .ev-liner{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.16)),
+    url("../assets/img/forro-sobre.png") center / cover no-repeat,
+    #efe6d0;
+}
+#env .ev-liner::after{
+  content:"";position:absolute;inset:0;
+  background:var(--fibras);opacity:.35;mix-blend-mode:multiply;
+}
+
+/* pliegues finos, como marcados con plegadera */
+#env .ev-seams path:first-child{stroke-width:.8px;stroke-opacity:.30}
+#env .ev-seams path:last-child{stroke-width:.8px;stroke-opacity:.30;stroke:#e6edc8}
+
+/* sombras más suaves y cercanas */
+#env .ev-body{filter:drop-shadow(0 2px 6px rgba(0,0,0,.28))}
+#env .ev-cast{top:3px;background:rgba(14,20,8,.22);filter:blur(3px)}
+
+/* luz ambiental y viñeta */
+#env .ev-light{
+  background:
+    radial-gradient(120% 70% at 20% 0%, rgba(255,255,230,.12), transparent 55%),
+    radial-gradient(130% 95% at 50% 50%, transparent 55%, rgba(0,0,0,.32) 100%);
+}
+
+/* sello con relieve */
+#env .ev-seal{
+  filter:drop-shadow(0 7px 5px rgba(0,0,0,.42)) drop-shadow(0 1px 0 rgba(255,240,190,.25));
+}
+
+/* texto de ayuda, más fino y discreto */
+#env .ev-hint{
+  color:rgba(238,230,198,.82);
+  font-size:12px;letter-spacing:3.5px;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
