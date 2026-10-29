@@ -61,9 +61,9 @@
   if(!statusEl){statusEl=document.createElement('div');statusEl.id='rsvpStatus';statusEl.className='status';statusEl.setAttribute('role','status');statusEl.hidden=true;form.appendChild(statusEl)}
   const el={name,sug:opt(g('rsvpSuggest')),auth:opt(g('authInfo')),authN:opt(g('authN')),authNote:opt(g('authNote')),
             seatsBox:opt(g('seatsBox')),seats:opt(seatsEl),diet:opt(g('rsvpDiet')||f('restricciones')),msg:opt(g('rsvpMsg')||f('mensaje')),
-            hp:f('website'),btn,status:statusEl,guestNamesBox:opt(g('guestNamesBox')),guestNamesList:opt(g('guestNamesList'))};
+            hp:f('website'),btn,status:statusEl};
   const btnLabel=btn.textContent||'Enviar respuesta';
-  let guest=null,authorized=Math.min(CFG.unlistedPasses||1,CFG.seatsCap||10),sending=false,guestNameInputs=[];
+  let guest=null,authorized=Math.min(CFG.unlistedPasses||1,CFG.seatsCap||10),sending=false;
 
   const plural=(n,s,p)=>n+' '+(n===1?s:p);
   const val=n=>String((n&&n.value)||'').trim();
@@ -94,24 +94,16 @@
   const att=()=>{const a=f('asistencia');return a?String(a.value||''):''};
   const isYes=a=>{const t=nz(a);return /asist/.test(t)&&!/^no/.test(t)};
 
-  function setErr(key,msg){
-    const p=g('err-'+key);if(p)p.textContent=msg||'';
-    if(key==='guestNames'){
-      guestNameInputs.forEach(input=>{msg?input.setAttribute('aria-invalid','true'):input.removeAttribute('aria-invalid')});
-      return;
-    }
-    const t={name:el.name,seats:seatsEl}[key];if(t){msg?t.setAttribute('aria-invalid','true'):t.removeAttribute('aria-invalid')}
-  }
-  function clearErrs(){['name','att','seats','guestNames'].forEach(k=>setErr(k,''))}
+  function setErr(key,msg){const p=g('err-'+key);if(p)p.textContent=msg||'';
+    const t={name:el.name,seats:seatsEl}[key];if(t){msg?t.setAttribute('aria-invalid','true'):t.removeAttribute('aria-invalid')}}
+  function clearErrs(){['name','att','seats'].forEach(k=>setErr(k,''))}
 
   function buildSeats(){
     if(!hasSeats||seatsEl.tagName!=='SELECT')return;
     const keep=parseInt(seatsEl.value,10);seatsEl.innerHTML='';
     for(let i=1;i<=authorized;i++){const o=document.createElement('option');o.value=i;o.textContent=i===1?'1 persona':i+' personas';seatsEl.appendChild(o)}
     seatsEl.value=(keep&&keep<=authorized)?keep:authorized;
-    renderGuestNames();
   }
-
   function refreshAuth(){
     const v=el.name.value.trim();guest=exact(v);
     authorized=Math.min(guest?guest.p:(CFG.unlistedPasses||1),CFG.seatsCap||10);
@@ -120,55 +112,7 @@
     el.authNote.textContent=show&&!guest&&GUESTS.length?'(tu nombre no aparece en la lista)':'';
     buildSeats();
   }
-
-  function refreshSeatsBox(){
-    el.seatsBox.hidden=!isYes(att());
-    renderGuestNames();
-  }
-
-  function renderGuestNames(){
-    if(!hasSeats || !el.guestNamesBox || !el.guestNamesList) return;
-    const attending=isYes(att());
-    if(!attending){
-      el.guestNamesBox.hidden=true;
-      el.guestNamesList.innerHTML='';
-      guestNameInputs=[];
-      setErr('guestNames','');
-      return;
-    }
-    const total = Math.max(1, parseInt(seatsEl.value,10) || 1);
-    const required = Math.max(0, total - 1);
-    el.guestNamesBox.hidden = required === 0;
-    if(required===0){
-      el.guestNamesList.innerHTML='';
-      guestNameInputs=[];
-      setErr('guestNames','');
-      return;
-    }
-    const values = guestNameInputs.map(input => input.value.trim());
-    el.guestNamesList.innerHTML='';
-    guestNameInputs=[];
-
-    for(let i=0;i<required;i++){
-      const wrap=document.createElement('div');
-      const label=document.createElement('label');
-      label.setAttribute('for','guestName_'+i);
-      label.textContent = required===1 ? 'Nombre del acompañante' : 'Nombre del acompañante '+(i+1);
-      const input=document.createElement('input');
-      input.type='text';
-      input.id='guestName_'+i;
-      input.name='acompanantes';
-      input.maxLength=120;
-      input.placeholder = required===1 ? 'Ej. Ana Torres' : 'Ej. Ana Torres';
-      input.autocomplete='off';
-      input.value = values[i] || '';
-      input.addEventListener('input',()=>setErr('guestNames',''));
-      wrap.appendChild(label);
-      wrap.appendChild(input);
-      el.guestNamesList.appendChild(wrap);
-      guestNameInputs.push(input);
-    }
-  }
+  function refreshSeatsBox(){el.seatsBox.hidden=!isYes(att())}
 
   function showSuggest(){
     if(el.sug===STUB)return;
@@ -185,7 +129,7 @@
   el.name.addEventListener('input',()=>{setErr('name','');showSuggest();refreshAuth()});
   el.name.addEventListener('blur',()=>setTimeout(()=>{el.sug.hidden=true;el.name.setAttribute('aria-expanded','false')},150));
   form.querySelectorAll('[name=asistencia]').forEach(r=>r.addEventListener('change',()=>{setErr('att','');refreshSeatsBox()}));
-  if(hasSeats)seatsEl.addEventListener('change',()=>{setErr('seats','');renderGuestNames();});
+  if(hasSeats)seatsEl.addEventListener('change',()=>setErr('seats',''));
 
   function validate(){
     const errs={},nm=el.name.value.trim().replace(/\s+/g,' ');
@@ -198,18 +142,6 @@
         if(!seats||seats<1)errs.seats='Indica cuántas personas asistirán.';
         else if(seats>authorized)errs.seats='Solo puedes registrar hasta '+plural(authorized,'asistente','asistentes')+'.';}
       else seats=1;
-      const required = Math.max(0, seats - 1);
-      const companionNames = guestNameInputs.map(input => String(input.value || '').trim()).filter(Boolean);
-      if(required>0 && companionNames.length < required){
-        errs.guestNames = 'Escribe el nombre de '+(required===1 ? '1 acompañante' : required+' acompañantes')+' según tus pases asignados.';
-      }
-      if(required>0 && companionNames.length > required){
-        errs.guestNames = 'Solo puedes registrar '+required+' '+(required===1 ? 'acompañante' : 'acompañantes')+' según tus pases asignados.';
-      }
-      if(required>0){
-        const invalid = companionNames.some(name => name.split(/\s+/).filter(Boolean).length < 2);
-        if(invalid) errs.guestNames = 'Escribe el nombre completo de cada acompañante.';
-      }
     }
     return {errs,name:nm,a,seats};
   }
@@ -221,8 +153,7 @@
   }
   function summaryText(p){
     return ['Confirmación · Boda Elizabeth y Gustavo','Nombre: '+p.nombre,'Asistencia: '+p.asistencia,
-      'Asistentes: '+p.asistentes+' (autorizados: '+p.autorizados+')','Acompañantes: '+(Array.isArray(p.acompanantes)&&p.acompanantes.length ? p.acompanantes.join(', ') : 'ninguno'),
-      'Restricciones alimentarias: '+(p.restricciones||'ninguna'),'Mensaje: '+(p.mensaje||'—')].join('\n');
+      'Asistentes: '+p.asistentes+' (autorizados: '+p.autorizados+')','Restricciones alimentarias: '+(p.restricciones||'ninguna'),'Mensaje: '+(p.mensaje||'—')].join('\n');
   }
   function copyBlock(p){
     const wrap=document.createElement('div'),ta=document.createElement('textarea'),b=document.createElement('button');
@@ -242,11 +173,10 @@
     const v=validate(),keys=Object.keys(v.errs);
     if(keys.length){keys.forEach(k=>setErr(k,v.errs[k]));
       status('warn',['Revisa los campos marcados antes de enviar.']);
-      const first={name:el.name,att:form.querySelector('[name=asistencia]'),seats:seatsEl,guestNames:guestNameInputs[0]}[keys[0]];first&&first.focus&&first.focus();return}
+      const first={name:el.name,att:form.querySelector('[name=asistencia]'),seats:seatsEl}[keys[0]];first&&first.focus&&first.focus();return}
     const yes=isYes(v.a);
-    const acomp = guestNameInputs.map(input => String(input.value || '').trim()).filter(Boolean);
     const p={nombre:v.name,asistencia:yes?'Asistiré':'No podré asistir',asistentes:yes?v.seats:0,autorizados:authorized,enListado:!!guest,
-      acompanantes:acomp,restricciones:val(el.diet),mensaje:val(el.msg),enviado:new Date().toISOString()};
+      restricciones:val(el.diet),mensaje:val(el.msg),enviado:new Date().toISOString()};
     busy(true);status('info',['Enviando tu respuesta…']);
     const first=v.name.split(' ')[0];
     try{
