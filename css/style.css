@@ -325,7 +325,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 }
 
 /* ===== SOBRE INTERACTIVO: VERDE OLIVA ===== */
-
 #env {
   position: fixed;
   inset: 0;
@@ -512,7 +511,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 #env.open .ev-cast,
 .open #env .ev-cast {
-  animation: evCast 1.8s forwards;
+  animation: evCast 0.8s forwards;
 }
 
 #env.open .ev-hint,
@@ -551,18 +550,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     width: 94px;
     height: 94px;
     margin: -47px 0 0 -47px;
-  }
-}
-
-  #env .ev-seal {
-    width: 94px;
-    height: 94px;
-    margin: -47px 0 0 -47px;
-  }
-
-  #env .ev-cast {
-    top: calc(16vh + 8px);
-    height: 23vh;
   }
 }
 
