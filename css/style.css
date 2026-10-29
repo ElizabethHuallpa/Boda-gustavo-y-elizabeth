@@ -324,8 +324,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   box-sizing: border-box;
 }
 
-
-
 /* ===== SOBRE INTERACTIVO: VERDE OLIVA ===== */
 
 #env {
@@ -565,7 +563,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     height: 23vh;
   }
 }
-
 
 /* Texto de ayuda y luz del sobre */
 #env .ev-light{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(120% 70% at 18% 0%,rgba(255,255,255,.16),transparent 55%),radial-gradient(110% 80% at 85% 110%,rgba(0,0,0,.3),transparent 62%)}
