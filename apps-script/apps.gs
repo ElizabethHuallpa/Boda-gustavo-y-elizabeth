@@ -29,11 +29,14 @@ function doPost(e) {
       if (!hoja) hoja = ss.insertSheet(HOJA_RESPUESTAS);
       if (hoja.getLastRow() === 0) {
         hoja.appendRow(['Fecha', 'Nombre', 'Asistencia', 'Asistentes', 'Autorizados', 'En listado',
-                        'Restricciones alimentarias', 'Mensaje']);
+                        'Restricciones alimentarias', 'Acompañantes', 'Mensaje']);
       }
+      const acompanantes = Array.isArray(p.acompanantes)
+        ? p.acompanantes.join(' | ')
+        : String(p.acompanantes || '').split('|').map(v => v.trim()).filter(Boolean).join(' | ');
       hoja.appendRow([new Date(), limpio(p.nombre), limpio(p.asistencia), Number(p.asistentes),
                       autorizadosPara(p.nombre), p.enListado ? 'Sí' : 'No',
-                      limpio(p.restricciones), limpio(p.mensaje)]);
+                      limpio(p.restricciones), limpio(acompanantes), limpio(p.mensaje)]);
     } finally {
       lock.releaseLock();
     }
@@ -57,6 +60,12 @@ function validar(p) {
   if (!Number.isInteger(n) || n < 0) return 'Número de asistentes no válido';
   if (p.asistencia === 'Asistiré' && n < 1) return 'Indica al menos 1 asistente';
   if (n > autorizadosPara(p.nombre)) return 'Supera los asistentes autorizados';
+  if (p.asistencia === 'Asistiré') {
+    const acomp = Array.isArray(p.acompanantes)
+      ? p.acompanantes
+      : String(p.acompanantes || '').split('|').map(v => v.trim()).filter(Boolean);
+    if (n - 1 !== acomp.length) return 'Los nombres de acompañantes no coinciden con la cantidad de asistentes';
+  }
   return null;
 }
 
