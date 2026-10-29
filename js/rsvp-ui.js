@@ -105,13 +105,16 @@
     seatsEl.value=(keep&&keep<=authorized)?keep:authorized;
   }
   function refreshAuth(){
-    const v=el.name.value.trim();guest=exact(v);
+    const v=el.name.value.trim();
+     guest=exact(v);
     authorized=Math.min(
     guest?guest.p:(CFG.unlistedPasses||1),
     CFG.seatsCap||10);
-    const show=v.length>=MIN_SUGGEST;el.auth.hidden=!show;
+    const show=v.length>=MIN_SUGGEST;
+    el.auth.hidden=!show;
     el.authN.textContent=authorized;
-    el.authNote.textContent=show&&!guest&&GUESTS.length?'(tu nombre no aparece en la lista)':'';
+    el.authNote.textContent=show&&!guest&&GUESTS.length
+       ?'(tu nombre no aparece en la lista)':'';
     buildSeats();
   }
   function refreshSeatsBox(){el.seatsBox.hidden=!isYes(att())}
