@@ -53,6 +53,32 @@ const RSVP_CONFIG = {
     { n: "Leonarda Mulluni", p: 2 },
     { n: "Yossy Quintanilla", p: 2 }
   ],
+
+  // Invitaciones no registradas: un pase por defecto
   unlistedPasses: 1,
+  
+  // Máximo general de personas, incluida la persona titular
   seatsCap: 10
 };
+
+/**ESTO SE ELIMINO: Busca una invitación por nombre completo. 
+ * Devuelve el total de pases autorizados.
+ */
+function getAuthorizedPasses(name) {
+  const guest = getGuestConfig(name);
+
+  return guest ? guest.p : RSVP_CONFIG.unlistedPasses;
+}
+
+/**
+ * Devuelve el máximo de acompañantes,
+ * sin contar a la persona titular.
+ */
+function getMaxCompanions(name) {
+  const passes = getAuthorizedPasses(name);
+
+  return Math.max(
+    0,
+    Math.min(passes - 1, RSVP_CONFIG.seatsCap - 1)
+  );
+}
