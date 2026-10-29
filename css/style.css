@@ -348,7 +348,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   inset: 0;
   overflow: hidden;
   perspective: 1800px;
-  perspective-origin: 50% 22vh;
+  perspective-origin: 50% 0;
 }
 
 /* Fondo posterior: ya no usa la foto del sobre completo */
@@ -413,8 +413,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(18vh + 10px);
-  height: 26vh;
+  top: 10px;
+  height: 44%;
   background: rgba(18, 25, 12, .35);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   filter: blur(8px);
@@ -425,10 +425,10 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 /* Solapa que se abre */
 #env .ev-flap {
   position: absolute;
-  top: 18vh;
+  top: 0;
   left: 0;
   right: 0;
-  height: 26vh;
+  height: 44%;
   transform-origin: 50% 0;
   transform-style: preserve-3d;
   z-index: 4;
@@ -547,10 +547,12 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 }
 
 @media (max-width: 640px) {
-  #env .ev-flap {
-    top: 16vh;
-    height: 23vh;
+  #env .ev-seal {
+    width: 94px;
+    height: 94px;
+    margin: -47px 0 0 -47px;
   }
+}
 
   #env .ev-seal {
     width: 94px;
@@ -566,5 +568,5 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Texto de ayuda y luz del sobre */
 #env .ev-light{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(120% 70% at 18% 0%,rgba(255,255,255,.16),transparent 55%),radial-gradient(110% 80% at 85% 110%,rgba(0,0,0,.3),transparent 62%)}
-#env .ev-hint{position:absolute;left:0;right:0;top:calc(18vh + 26vh + 70px);z-index:6;text-align:center;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:3px;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.6);transition:opacity .6s}
-@media (max-width:640px){#env .ev-hint{top:calc(16vh + 23vh + 60px)}}
+#env .ev-hint{position:absolute;left:0;right:0;top:calc(44% + 70px);z-index:6;text-align:center;color:rgba(255,255,255,.92);font-size:13px;letter-spacing:3px;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.6);transition:opacity .6s}
+@media (max-width:640px){#env .ev-hint{top:calc(44% + 60px)}}
