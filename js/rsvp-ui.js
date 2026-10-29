@@ -63,6 +63,27 @@
             seatsBox:opt(g('seatsBox')),seats:opt(seatsEl),diet:opt(g('rsvpDiet')||f('restricciones')),msg:opt(g('rsvpMsg')||f('mensaje')),
             hp:f('website'),btn,status:statusEl};
   const btnLabel=btn.textContent||'Enviar respuesta';
+
+     const compBox=g('companions');
+  function renderCompanions(){
+    if(!compBox)return;
+    const n=(isYes(att())&&hasSeats)?(parseInt(seatsEl.value,10)||1):1;
+    const need=Math.max(0,n-1);
+    const old=[...compBox.querySelectorAll('input')].map(i=>i.value);
+    compBox.innerHTML='';
+    for(let i=0;i<need;i++){
+      const w=document.createElement('div');w.className='fg';
+      const l=document.createElement('label');l.htmlFor='rsvpComp'+(i+1);l.textContent='Acompañante '+(i+1)+' · nombre completo';
+      const inp=document.createElement('input');
+      inp.type='text';inp.id='rsvpComp'+(i+1);inp.name='acompanante'+(i+1);inp.maxLength=120;
+      inp.autocomplete='off';inp.placeholder='Nombre y apellidos';inp.value=old[i]||'';
+      inp.addEventListener('input',()=>setErr('comp',''));
+      w.append(l,inp);compBox.appendChild(w);
+    }
+    compBox.hidden=!need;
+  }
+  const getComps=()=>compBox?[...compBox.querySelectorAll('input')].map(i=>i.value.trim().replace(/\s+/g,' ')):[];
+   
   let guest=null,authorized=Math.min(CFG.unlistedPasses||1,CFG.seatsCap||10),sending=false;
 
   const plural=(n,s,p)=>n+' '+(n===1?s:p);
@@ -96,7 +117,7 @@
 
   function setErr(key,msg){const p=g('err-'+key);if(p)p.textContent=msg||'';
     const t={name:el.name,seats:seatsEl}[key];if(t){msg?t.setAttribute('aria-invalid','true'):t.removeAttribute('aria-invalid')}}
-  function clearErrs(){['name','att','seats'].forEach(k=>setErr(k,''))}
+  function clearErrs(){['name','att','seats','comp'].forEach(k=>setErr(k,''))}
 
   function buildSeats(){
     if(!hasSeats||seatsEl.tagName!=='SELECT')return;
@@ -118,7 +139,11 @@
     setSeats(parseInt(seatsEl&&seatsEl.value,10)||1);
     buildSeats();
   }
-  function refreshSeatsBox(){el.seatsBox.hidden=!isYes(att())}
+  function refreshSeatsBox(){
+     el.seatsBox.hidden=!isYes(att());
+     // Sitio 2: Al mostrar/ocultar el contenedor de asientos
+     renderCompanions();
+  }
 
   function showSuggest(){
     if(el.sug===STUB)return;
@@ -145,6 +170,9 @@
     seatsEl.value=n; setErr('seats','');
     if(minus)minus.disabled=n<=1;
     if(plus)plus.disabled=n>=max;
+
+    // Aquí se ejecuta tras cada clic en + o −
+    renderCompanions(); 
   }
   if(plus)plus.addEventListener('click',()=>setSeats((parseInt(seatsEl.value,10)||1)+1));
   if(minus)minus.addEventListener('click',()=>setSeats((parseInt(seatsEl.value,10)||1)-1));
@@ -161,7 +189,12 @@
         else if(seats>authorized)errs.seats='Solo puedes registrar hasta '+plural(authorized,'asistente','asistentes')+'.';}
       else seats=1;
     }
-    return {errs,name:nm,a,seats};
+     let comps=[];
+     if(isYes(a)&&seats>1){
+      comps=getComps();
+      if(comps.some(c=>c.length<5||c.split(' ').length<2))errs.comp='Escribe el nombre completo (nombre y apellido) de cada acompañante.';
+    }
+    return {errs,name:nm,a,seats,comps};
   }
 
   function status(kind,parts){
@@ -181,7 +214,17 @@
   }
   function again(){
     const b=document.createElement('button');b.type='button';b.className='btn alt';b.textContent='Registrar otra respuesta';
-    b.onclick=()=>{form.reset();form.removeAttribute('data-state');el.status.hidden=true;guest=null;refreshAuth();refreshSeatsBox();el.name.focus()};return b;
+    b.onclick=()=>{form.reset();
+                   form.removeAttribute('data-state');
+                   el.status.hidden=true;
+                   guest=null;
+                   refreshAuth();
+                   refreshSeatsBox();
+                   // Sitio 3: Se ejecuta inmediatamente después de refreshSeatsBox() al resetear el formulario
+                   renderCompanions();
+                   el.name.focus();
+                  };
+     return b;
   }
   function busy(on){sending=on;btn.disabled=on;btn.textContent=on?'Enviando…':btnLabel}
 
@@ -191,10 +234,20 @@
     const v=validate(),keys=Object.keys(v.errs);
     if(keys.length){keys.forEach(k=>setErr(k,v.errs[k]));
       status('warn',['Revisa los campos marcados antes de enviar.']);
-      const first={name:el.name,att:form.querySelector('[name=asistencia]'),seats:seatsEl}[keys[0]];first&&first.focus&&first.focus();return}
+      const first={name:el.name,att:form.querySelector('[name=asistencia]'),seats:seatsEl,comp:compBox&&compBox.querySelector('input')}[keys[0]];
+      first&&first.focus&&first.focus();return}
     const yes=isYes(v.a);
-    const p={nombre:v.name,asistencia:yes?'Asistiré':'No podré asistir',asistentes:yes?v.seats:0,autorizados:authorized,enListado:!!guest,
-      restricciones:val(el.diet),mensaje:val(el.msg),enviado:new Date().toISOString()};
+    const p={
+       nombre:v.name,
+       asistencia:yes?'Asistiré':'No podré asistir',
+       asistentes:yes?v.seats:0,
+       autorizados:authorized,
+       enListado:!!guest,
+       acompanantes:v.comps.join('\n'), // <- Cada acompañante saldrá en una línea separada
+       restricciones:val(el.diet),
+       mensaje:val(el.msg),
+       enviado:new Date().toISOString()
+    };
     busy(true);status('info',['Enviando tu respuesta…']);
     const first=v.name.split(' ')[0];
     try{
