@@ -763,6 +763,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     hue-rotate(174deg) brightness(90%)
     drop-shadow(1px 1px 0px #FFFFFF80)
     drop-shadow(2px 2px 2px #4F73994D);
+    box-shadow: 2px 3px 5px #4F73994D, inset 1px 1px 3px #FFFFFF73;
 }
 
 /* Monograma EG en color azul */
