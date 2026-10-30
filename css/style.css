@@ -767,3 +767,16 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     drop-shadow(1px 1px 0px #FFFFFF80)
     drop-shadow(2px 2px 2px #4F73994D);
 }
+
+/* Monograma EG en color azul */
+.icono-azul {
+  filter: invert(50%) sepia(21%) saturate(876%) hue-rotate(170deg) brightness(80%) contrast(89%);
+  
+  /* Opcional: una transición suave si quieres usarlo con :hover */
+  transition: filter 0.3s ease; 
+}
+
+/* Ejemplo: Si quieres que vuelva a ser negro al pasar el mouse por encima */
+.icono-azul:hover {
+  filter: none;
+}
