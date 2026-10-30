@@ -408,8 +408,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 }
 
 /* Sombra de la solapa */
-#env .ev-cast {
-  position: absolute;
+/*#env .ev-cast {
+  /*position: absolute;
   left: 0;
   right: 0;
   top: 10px;
@@ -419,7 +419,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   filter: blur(8px);
   z-index: 3;
   pointer-events: none;
-}
+}*/
 
 /* Solapa que se abre */
 #env .ev-flap {
