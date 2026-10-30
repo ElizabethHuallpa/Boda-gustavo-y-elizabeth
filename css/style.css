@@ -761,9 +761,9 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   height: auto;
   display: block;
 
-  /*object-fit: contain;
+  object-fit: contain;
   background: transparent;
-  /* Filtro para cambiar el PNG negro al color azul #4F7399 */*/
+  /* Filtro para cambiar el PNG negro al color azul #4F7399 */
   filter:
     brightness(0) 
     saturate(100%)
