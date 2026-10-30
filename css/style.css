@@ -45,7 +45,7 @@ section{padding:70px 24px;text-align:center}
 .hero{padding:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;overflow:hidden}
 .bou{position:absolute;top:0;width:min(56vw,330px);aspect-ratio:4/3;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 95% 95% at 0 0,#000 42%,transparent 100%);mask-image:radial-gradient(ellipse 95% 95% at 0 0,#000 42%,transparent 100%)}
 .bou.l{left:0}.bou.r{right:0;transform:scaleX(-1)}
-.ht{position:relative;z-index:2;padding-top:19vh;color:var(--navy)}
+.ht{position:relative;z-index:2;padding-top:7vh;color:var(--navy);text-align: center}
 .ht small{font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--olive-d)}
 .ht .names{font-size:clamp(66px,12vw,110px);line-height:.95;margin:14px 0}
 .ht .amp{display:block;font-size:.5em;color:var(--gold)}
@@ -316,9 +316,9 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Cita bíblica más abajo */
 .hero .cita {
-  margin-top: 45px;
   position: relative;
   z-index: 2;
+  margin-top: 45px;
   padding-left: 15px;
   padding-right: 15px;
   box-sizing: border-box;
@@ -624,8 +624,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 }
 
 /* pliegues finos, como marcados con plegadera */
-#env .ev-seams path:first-child{stroke-width:.8px;stroke-opacity:.30}
-#env .ev-seams path:last-child{stroke-width:.8px;stroke-opacity:.30;stroke:#e6edc8}
+#env .ev-seams path:first-child{stroke-width:.15px;stroke-opacity:.30}
+#env .ev-seams path:last-child{stroke-width:.15px;stroke-opacity:.30;stroke:#e6edc8}
 
 /* sombras más suaves y cercanas */
 #env .ev-body{filter:drop-shadow(0 2px 6px rgba(0,0,0,.28))}
@@ -649,7 +649,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   font-size:12px;letter-spacing:3.5px;
   text-shadow:0 1px 2px rgba(0,0,0,.35);
 }
-
 
 /* ===== Contador de asistentes RSVP ===== */
 .rsvp .step {
