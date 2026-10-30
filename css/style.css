@@ -756,8 +756,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Monograma EG en azul */
 .monograma-marco .mono {
-  width: 78%;
-  height: 78%;
+  width: 110%;
+  height: 110%;
   object-fit: contain;
   background: transparent;
   /* Filtro para cambiar el PNG negro al color azul #4F7399 */
@@ -767,14 +767,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     invert(45%) sepia(14%) saturate(1100%)
     hue-rotate(174deg) brightness(90%)
     drop-shadow(2px 2px 2px #4F73994D);
-}
-
-/* Monograma EG en color azul */
-.icono-azul {
-  filter: invert(50%) sepia(21%) saturate(876%) hue-rotate(170deg) brightness(80%) contrast(89%);
-  
-  /* Opcional: una transición suave si quieres usarlo con :hover */
-  transition: filter 0.3s ease; 
+ transition: filter 0.3s ease;
 }
 
 /* Ejemplo: Si quieres que vuelva a ser negro al pasar el mouse por encima */
