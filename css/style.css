@@ -769,7 +769,6 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     saturate(100%)
     invert(45%) sepia(14%) saturate(1100%)
     hue-rotate(174deg) brightness(90%)
-    drop-shadow(1px 1px 0px #FFFFFF80)
     drop-shadow(2px 2px 2px #4F73994D);
 }
 
