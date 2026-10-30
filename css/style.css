@@ -741,8 +741,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 /* Monograma EG en alto relieve */
 .monograma-marco {
   display: inline-flex;       /* Centrado perfecto de elementos hijos */
-  /*justify-content: center;    /* Centrado horizontal */
-  /*align-items: center;        /* Centrado vertical */
+  justify-content: center;    /* Centrado horizontal */
+  align-items: center;        /* Centrado vertical */
   width: 200px;
   height: 280px;
   margin: 25 px 30px auto;  /* Centra el óvalo en la sección y añade espacio abajo */
