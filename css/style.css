@@ -740,22 +740,30 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Monograma EG en alto relieve */
 .monograma-marco {
-  width: 190px;
-  height: 245px;
-  margin: 25px auto 30px;
-  border: 1.5px solid #4F7399;
+  display: inline-flex;       /* Centrado perfecto de elementos hijos */
+  justify-content: center;    /* Centrado horizontal */
+  align-items: center;        /* Centrado vertical */
+  width: 200px;
+  height: 280px;
+  border: 1px solid #4F7399;
   border-radius: 50%;
-  display: flex;
+  margin: 0 auto 20px auto;  /* Centra el óvalo en la sección y añade espacio abajo */
+}
+
+  /*display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-}
+}*/
 
 .monograma-marco .mono {
-  width: 78%;
-  height: 78%;
-  object-fit: contain;
+  width: 55%;
+  height: auto;
+  display: block;
+
+  /*object-fit: contain;
   background: transparent;
+  /* Filtro para cambiar el PNG negro al color azul #4F7399 */*/
   filter:
     brightness(0) 
     saturate(100%)
