@@ -174,16 +174,21 @@
 
       <!-- Contador de asistentes RSVP -->
       <div class="fg" id="seatsBox" hidden>    
-        <label for="rsvpSeats">¿Cuántas personas asistirán, contándote a ti?<span class="req" aria-hidden="true">*</span></label>
+        <label for="rsvpSeats">
+          ¿Cuántas personas asistirán, contándote a ti?
+          <span class="req" aria-hidden="true">*</span>
+        </label>
         <div class="step">
-          <button type="button" id="seatsMinus"aria-label="Restar una persona">−</button>
-          <input id="rsvpSeats" name="asistentes" type="number" value="1" min="1" max="10" readonly aria-describedby="err-seats">
-          <button type="button" id="seatsPlus" aria-label="Añadir una persona">+</button>
-       </div>
-       <p class="err" id="err-seats" role="alert"></p>
-       <div id="companions" hidden></div>
-       <p class="err" id="err-comp" role="alert"></p>
-     </div>
+          <button type="button" id="seatsMinus"
+          aria-label="Restar una persona">−</button>
+       <input id="rsvpSeats" name="asistentes"
+         type="number" value="1" min="1" max="10"
+         readonly aria-describedby="err-seats">
+       <button type="button" id="seatsPlus"
+         aria-label="Añadir una persona">+</button>
+  </div>
+  <p class="err" id="err-seats" role="alert"></p>
+</div>
       
        <div class="seats-counter">
         <button type="button" id="seatsMinus" aria-label="Restar una persona">−</button>
