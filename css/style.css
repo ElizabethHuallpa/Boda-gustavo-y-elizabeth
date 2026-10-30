@@ -405,7 +405,7 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Líneas de los pliegues */
 #env .ev-seams path {
-  stroke-width: 2.8;
+  stroke-width: 5.8;
 }
 
 /* Sombra de la solapa */
