@@ -45,7 +45,7 @@ section{padding:70px 24px;text-align:center}
 .hero{padding:0;min-height:100svh;display:flex;flex-direction:column;align-items:center;overflow:hidden}
 .bou{position:absolute;top:0;width:min(56vw,330px);aspect-ratio:4/3;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 95% 95% at 0 0,#000 42%,transparent 100%);mask-image:radial-gradient(ellipse 95% 95% at 0 0,#000 42%,transparent 100%)}
 .bou.l{left:0}.bou.r{right:0;transform:scaleX(-1)}
-.ht{position:relative;z-index:2;padding-top:16vh;color:var(--navy)}
+.ht{position:relative;z-index:2;padding-top:17vh;color:var(--navy)}
 .ht small{font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--olive-d)}
 .ht .names{font-size:clamp(66px,12vw,110px);line-height:.95;margin:14px 0}
 .ht .amp{display:block;font-size:.5em;color:var(--gold)}
@@ -314,15 +314,20 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
     drop-shadow(2px 3px 3px rgba(90, 84, 68, 0.12));
 }
 
-/* Cita bíblica más abajo */
+/* Cita debajo de las hortensias */
 .hero .cita {
   transform: translateY(25px);
   position: relative;
   z-index: 2;
-  margin-top: 75px;
+  margin-top: clamp(190px, 50vw, 250px);
   padding-left: 15px;
   padding-right: 15px;
   box-sizing: border-box;
+}
+
+/* Compensar el espacio para que los nombres no bajen */
+.hero .ht {
+  padding-top: 4vh;
 }
 
 /* ===== SOBRE INTERACTIVO: VERDE OLIVA ===== */
