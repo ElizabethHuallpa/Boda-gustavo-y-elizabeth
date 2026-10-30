@@ -743,15 +743,15 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   width: 190px;
   height: 245px;
   margin: 25px auto 30px;
-  border: 1.5px solid rgba(105, 112, 75, 0.65);
+  border: 1.5px solid #4F7399;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   box-shadow:
-    2px 3px 5px rgba(75, 78, 51, 0.12),
-    inset 1px 1px 3px rgba(255, 255, 255, 0.45);
+    2px 3px 5px #4F73994D,
+    inset 1px 1px 3px #FFFFFF73;
 }
 
 .monograma-marco .mono {
@@ -760,9 +760,10 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   object-fit: contain;
   background: transparent;
   filter:
-    brightness(0) saturate(100%)
-    invert(39%) sepia(13%) saturate(900%)
-    hue-rotate(30deg) brightness(90%)
-    drop-shadow(1px 1px 0px rgba(255,255,255,0.5))
-    drop-shadow(2px 2px 2px rgba(75,78,51,0.30));
+    brightness(0) 
+    saturate(100%)
+    invert(45%) sepia(14%) saturate(1100%)
+    hue-rotate(174deg) brightness(90%)
+    drop-shadow(1px 1px 0px #FFFFFF80)
+    drop-shadow(2px 2px 2px #4F73994D);
 }
