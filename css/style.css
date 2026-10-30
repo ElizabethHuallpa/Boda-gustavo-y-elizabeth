@@ -316,9 +316,9 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Cita bíblica más abajo */
 .hero .cita {
-  margin-top: 75px;
   position: relative;
   z-index: 2;
+  margin-top: 75px;
   padding-left: 15px;
   padding-right: 15px;
   box-sizing: border-box;
