@@ -756,8 +756,8 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Monograma EG en azul */
 .monograma-marco .mono {
-  width: 110%;
-  height: 110%;
+  width: 120%;
+  height: 120%;
   object-fit: contain;
   background: transparent;
   /* Filtro para cambiar el PNG negro al color azul #4F7399 */
