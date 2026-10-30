@@ -745,15 +745,16 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
   align-items: center;        /* Centrado vertical */
   width: 200px;
   height: 280px;
-  margin: 25 px 30px auto;  /* Centra el óvalo en la sección y añade espacio abajo */
+  margin: 25px auto 30px;  /* Centra el óvalo en la sección y añade espacio abajo */
   border: 1px solid #4F7399;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: transparent;
+  box-shadow:
+    2px 3px 5px #4F73994D,
+    inset 1px 1px 3px #FFFFFF73;
 }
 
+/* Monograma EG en azul */
 .monograma-marco .mono {
   width: 78%;
   height: 78%;
