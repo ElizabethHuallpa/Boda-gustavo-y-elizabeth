@@ -316,12 +316,16 @@ body{background-color:var(--paper);background-image:url("data:image/svg+xml;utf8
 
 /* Cita debajo de las hortensias */
 .hero .cita {
+  transform: translateY(10px);
   position: relative;
   z-index: 2;
   margin-top: clamp(190px, 50vw, 250px);
   padding-left: 15px;
   padding-right: 15px;
   box-sizing: border-box;
+
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 /* Compensar el espacio para que los nombres no bajen */
